@@ -32,4 +32,5 @@ class Solution(object):
                 if nums[i]>0:
                     return i+small
             return big+1
+            
                 
