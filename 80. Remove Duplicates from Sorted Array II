@@ -1,0 +1,28 @@
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        stack=[]
+        i=0
+        while i <len(nums):
+            #print nums[i]
+            if nums[i] not in stack:
+                stack=[]
+                stack.append(nums[i])
+                i+=1
+            elif nums[i] in stack and len(stack)<2:
+                stack.append(nums[i])
+                i+=1
+            elif nums[i] in stack and len(stack)==2:
+                del nums[i]
+                #use stack to record iterated elements and clear stack if element length reaches 2
+                #check others' solution for 2nd round
+                
+            
+        
+            
+                
+            
+        
