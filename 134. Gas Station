@@ -1,0 +1,33 @@
+class Solution(object):
+    def canCompleteCircuit(self, gas, cost):
+        """
+        :type gas: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        save=[]
+        for i in range(len(gas)):
+            save.append(gas[i]-cost[i])
+        if sum(save)<0:
+            return -1
+        else:
+            for i in range(len(save)):
+                if save[i]>=0:
+                    start=i
+                    break
+        s=0
+        for j in range(start,len(save)):
+            s=s+save[j]
+            if s<0:
+                start=j+1
+                s=0
+        return start
+        
+        #find the most possible start point first: I use the point where the gas is enough to travel to the next station
+        #what is the next possible start point if the start point you chose doesn't work out：I use the one which is next to 
+        #the one that makes previous route not able to travel(the first point which makes the sum negative)
+        
+            
+            
+            
+                
