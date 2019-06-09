@@ -1,0 +1,31 @@
+class Solution(object):
+    def getHint(self, secret, guess):
+        """
+        :type secret: str
+        :type guess: str
+        :rtype: str
+        """
+        A=[]
+        B=[]
+        i=0
+        while i<len(secret):
+            if secret[i]==guess[i]:
+                A.append(secret[i])
+                secret=secret[:i]+secret[i+1:]
+                guess=guess[:i]+guess[i+1:]
+            
+            else:
+                i+=1
+        i=0
+        while i<len(secret):
+            if guess[i] in secret:
+                B.append(guess[i])
+                secret=secret[:secret.find(guess[i])]+"x"+secret[secret.find(guess[i])+1:]
+            i+=1
+        a=len(A)
+        b=len(B)
+        return str(a)+"A"+str(b)+"B"
+        
+        
+        #understand the requirement is key to this problem. 
+        #note that after one element is marked as 'bull' or 'cow', you can not use it again
