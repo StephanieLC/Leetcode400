@@ -1,0 +1,32 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        n=len(nums)/3
+        #print n
+        nums.sort()
+        #print nums
+        res=[]
+        i=0
+        
+        while len(nums)>n and i < len(nums):
+            #print i,n
+            if nums[i] not in res and nums[i]==nums[i+n]:
+                res.append(nums[i])
+                del nums[:i+n+1]
+                i=0
+            elif nums[i] in res and nums[i]==nums[i+n]:
+                del nums[:i+n+1]
+                i=0
+            elif nums[i]!=nums[i+n]:
+                del nums[i]
+                i=0
+           
+        return res
+        
+       #check the n th element of each element and modify list. check other solutions
+            
+                
+        
