@@ -1,0 +1,21 @@
+class Solution(object):
+    def hIndex(self, citations):
+        """
+        :type citations: List[int]
+        :rtype: int
+        """
+        if citations in [[],[0]]:
+            return 0
+        else:
+            H=[]
+            #print citations
+            N=len(citations)
+            citations.sort()
+            for h in range(1,N+1):
+                if citations[N-h]>=h and (citations[N-h-1]<=h or N-h==0) :
+                #according to the definition of H index exists
+                    H.append(h)
+            if H==[]:
+                return 0
+            else:
+                return max(H)
