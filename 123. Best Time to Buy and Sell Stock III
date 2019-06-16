@@ -1,0 +1,29 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if len(prices)<=1:
+            return 0
+        else:
+            ltor=[0]
+            small=prices[0]
+            profit=0
+            for i in range(1,len(prices)):
+                small=min(small,prices[i])
+                profit=max(profit,prices[i]-small)
+                ltor.append(profit)
+            #ltor--record biggest profit from beginning to that day if one transaction
+            res=0
+            big=0
+            profit=0
+            for i in range(len(prices)-1,-1,-1):
+                big=max(big,prices[i])
+                profit=max(profit,big-prices[i])
+                res=max(res,ltor[i]+profit)
+            return res
+
+
+#this problem is worth revisit. record the biggest profit for each day if only one transaction(problem 121) ltor, then from right to
+#left, for each day, (the biggest profit+ltor[i]) is the biggest profit for the whole time--res, keep refreshing that res value.
