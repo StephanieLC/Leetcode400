@@ -24,3 +24,5 @@ class Solution(object):
                 elif count_l<=count_r:
                     return major_r
                     
+            #this is divide and conquer method, there are other methods such as hash map which use more space but less time.
+                    
