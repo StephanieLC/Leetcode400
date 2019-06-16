@@ -1,0 +1,22 @@
+class Solution(object):
+    def containsNearbyAlmostDuplicate(self, nums, k, t):
+        if k<0 or t<0:
+            return False
+        else:
+            bucket={}
+            for i in range(len(nums)):
+                w=t+1
+                #ensure this still works when t=0
+                content=nums[i]/w
+                if content in bucket:
+                    return True
+                elif content-1 in bucket and abs(nums[i]-bucket[content-1])<=t:
+                    return True
+                elif content+1 in bucket and abs(nums[i]-bucket[content+1])<=t:
+                    return True
+                else:
+                    bucket[content]=nums[i]
+                    if i>=k:
+                        del bucket[nums[i-k]/w]
+                        #refresh the buchket so that the upcomig element doesn't compare with element that is too old(ensure i-j<k)
+            return False
