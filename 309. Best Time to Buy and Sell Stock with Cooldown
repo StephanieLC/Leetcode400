@@ -1,0 +1,21 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if prices==[]:
+            return 0
+        else:
+            withstock=[0]*len(prices)
+            nostock=[0]*len(prices)
+            withstock[0]=0-prices[0]
+            for i in range(1,len(prices)):
+                withstock[i]=max((nostock[i-2] if i>=2 else 0 )-prices[i],withstock[i-1])
+                nostock[i]=max(nostock[i-1],withstock[i-1]+prices[i])
+            return max(max(withstock),max(nostock))
+            #dynamic programming---for one day: 1. you have stock in your hand: a. you bought it that day b. you bought it yesterday/earlier
+            #2.you have no stock in your hand a.you sold it yesterday or earlier b.you sold it that day
+            
+            
+            #need to revisit
