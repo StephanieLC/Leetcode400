@@ -1,0 +1,23 @@
+class Solution(object):
+    def jump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums)<=1:
+            return 0
+        else:
+            pre=0
+            pos=pre+nums[pre]
+            res=1
+            while pos<len(nums)-1:
+                far=pos
+                for i in range(pre,pos+1):
+                    far=max(far,i+nums[i])
+                    #for each step, there are nums[i] options, for each option, how far the next step can reach? and for next step,
+                    #there are different points it can get to too, so for each point, how far it will get to next step. 
+                    #we need to be greedy for current step and next step. draw a x axis will help a lot to understand the process
+                pre=pos
+                pos=far
+                res+=1
+            return res
