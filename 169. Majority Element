@@ -1,0 +1,26 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return self.major(nums,0,len(nums)-1)
+    def major(self,nums,l,r):
+        if l==r:
+            return nums[l]
+        else:
+            m=(l+r)/2
+            #divide the list into two parts, find the major element for each part, the one appears more is the major element for
+            #the whole string(because the major element should appear at least n/2 +1 times)
+            major_l=self.major(nums,l,m)
+            major_r=self.major(nums,m+1,r)
+            if major_l==major_r:
+                return major_l
+            else:
+                count_l=nums[l:m+1].count(major_l)
+                count_r=nums[m+1:r+1].count(major_r)
+                if count_l>count_r:
+                    return major_l
+                elif count_l<=count_r:
+                    return major_r
+                    
