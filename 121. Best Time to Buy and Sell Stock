@@ -1,0 +1,20 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if len(prices)<=1:
+            return 0
+        else:
+            #res=[]
+            small=prices[0]
+            res=0
+            for i in range(0,len(prices)):
+                small=min(small,prices[i])
+                res=max(res,prices[i]-small)
+                #for each step, fnd the smallest number(refresh this number at each step to be less time comsuming), and refresh
+                #the biggest diff to get the res
+            return res
+            
+        
