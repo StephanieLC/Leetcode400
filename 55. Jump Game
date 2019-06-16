@@ -1,0 +1,15 @@
+class Solution(object):
+    def canJump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        cover=0
+        for i in range(0,len(nums)):
+            cover=max(cover,nums[i]+i)
+            if cover>=len(nums)-1:
+                return True
+            elif cover<=i:
+                return False
+        
+        #greedy--every step take the most steps
